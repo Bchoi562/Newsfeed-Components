@@ -86,7 +86,9 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+   {title:'brians journey',date:'10/28/2020',firstParagraph:'ipsum1',secondParagraph:'ipsum2',thirdParagraph:'ipsum3'}
+
 ];
 
 /*
@@ -114,3 +116,61 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+//step 1
+const articles = document.querySelector('.articles');
+
+function articleMaker(articleObj){
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(expandButton);
+
+  article.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+   
+  title.textContent = articleObj.title;
+  date.textContent = articleObj.date;
+  p1.textContent = articleObj.firstParagraph;
+  p2.textContent = articleObj.secondParagraph;
+  p3.textContent = articleObj.thirdParagraph;
+  expandButton.textContent = '+';
+
+  //step 2
+  expandButton.addEventListener('click', ()=>{
+      article.classList.toggle('article-open');
+  });
+
+  //step 3
+  return article;
+
+
+}
+
+//step 4
+
+let articleObj = data.map((data) => {
+  return articleMaker(data);
+})
+
+articleObj.forEach((articleObj) => {
+  articles.appendChild(articleObj);
+});
+
+
+//step 5
+
+console.log(articleMaker({title:'brians journey',date:'10/28/2020',firstParagraph:'ipsum1',secondParagraph:'ipsum2',thirdParagraph:'ipsum3'}))
+
+articleMaker({title:'brians journey',date:'10/28/2020',firstParagraph:'ipsum1',secondParagraph:'ipsum2',thirdParagraph:'ipsum3'});
